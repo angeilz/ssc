@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.angeilz.ssc.mapper.StageInfoDao">
+
+    <select id="findList" resultType="Cq">
+        select *
+        from cq
+    </select>
+    <select id="findListByTime" resultType="Cq">
+        select *
+        from cq
+        where id between #{begin} and #{end}
+    </select>
+    <insert id="insert">
+        insert into cq (id, number) values (#{id}, #{number})
+    </insert>
+    <select id="getLastID" resultType="string">
+        select max(id)
+        from cq;
+    </select>
+
+    <select id="findForecastNotEnd" resultType="Forecast">
+        select
+            a.id,
+            b.number,
+            a.relation_id,
+            a.figure,
+            a.input_money,
+            a.input_time,
+            a.type,
+            a.end_flag
+        from forecast a left join cq b on a.relation_id = b.id
+        where end_flag = 0
+    </select>
+
+    <insert id="insertForecast">
+        insert into forecast (type, relation_id, create_date, figure)
+        values (#{type}, #{relationId}, now(), #{figure})
+    </insert>
+    <update id="updateForecast">
+        update forecast
+        set input_time = #{inputTime}, end_flag = #{endFlag}, relation_id = #{relationId}
+        where id = #{id}
+    </update>
+
+    <select id="findFirstFourData" resultType="Cq">
+        select *
+        from cq
+        order by id desc
+        limit 4
+    </select>
+
+    <select id="getNewId" resultType="string">
+        select max(relation_id)
+        from forecast
+    </select>
+
+</mapper>

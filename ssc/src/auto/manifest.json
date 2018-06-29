@@ -1,0 +1,33 @@
+{
+  "manifest_version": 2,
+  "name": "demo",
+  "version": "1.0.0",
+  "description": "简单的Chrome扩展demo",
+  "icons": {
+    "16": "img/icon.png",
+    "48": "img/icon.png",
+    "128": "img/icon.png"
+  },
+  "background": {
+  },
+  "browser_action": {
+    "default_icon": "img/icon.png",
+    "default_title": "这是一个示例Chrome插件"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.hck11.com/*"
+      ],
+      "js": [
+        "jquery.min.js",
+        "content-script.js"
+      ],
+      "run_at": "document_end",
+      "all_frames": true
+    }
+  ],
+  "permissions": [
+    "https://www.hck11.com/*"
+  ]
+}
