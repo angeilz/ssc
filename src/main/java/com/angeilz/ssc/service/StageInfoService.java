@@ -20,7 +20,7 @@ public class StageInfoService {
     StageInfoDao dao;
 
     public boolean autoInsert(String tableName) {
-        String lastId = dao.getLastID();
+        String lastId = dao.getLastID(tableName);
         SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
         String date = format.format(new Date());
         List<String> list = DataSources.getDataByTimeZone(lastId, date + "120", tableName);

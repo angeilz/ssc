@@ -11,7 +11,7 @@ public interface StageInfoDao {
 
     void insert(StageInfo stageInfo);
 
-    List<StageInfo> findListByTime(@Param("begin") String begin, @Param("end") String end);
+    List<StageInfo> findListByTime(@Param("begin") String begin, @Param("end") String end, @Param("tableName") String tableName);
 
-    String getLastID();
+    String getLastID(@Param("tableName") String tableName);
 }

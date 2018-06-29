@@ -12,13 +12,15 @@ import java.util.List;
  * @version 2018/6/29
  */
 public class ProfitAndLoseService extends SscApplicationTests {
-
+    public static final String CQ_TABLE = "cq";
+    public static final String XJ_TABlE = "xj";
+    public static final String TJTABLE = "tj";
     @Autowired
     FiveFourService fiveFourService;
 
     @Test
     public void chance() {
-        fiveFourService.isHaveChance("12410", "20180628009", "201806280010");
+        fiveFourService.isHaveChance("12410", "20180629023", "20180629120");
     }
 
 
@@ -35,7 +37,7 @@ public class ProfitAndLoseService extends SscApplicationTests {
             if (i + 1 < 10) {
                 end = "0" + end;
             }
-            profit += fiveFourService.profitAndLoss("201806" + begin + "024", "201806" + end + "023");
+            profit += fiveFourService.profitAndLoss("201806" + begin + "024", "201806" + end + "023", CQ_TABLE);
             profitList.add(profit);
         }
         System.out.println("*****************************************************");
@@ -45,11 +47,15 @@ public class ProfitAndLoseService extends SscApplicationTests {
 
     @Test
     public void profitAndLose() {
-        fiveFourService.profitAndLoss("20180601024", "20180631023");
+        fiveFourService.profitAndLoss("20180629024", "20180629120", CQ_TABLE);
     }
 
 
     public static void main(String[] args) {
+        //oneTime:7,twoTime:3,threeTime:2,fourTime:3,fiveTime:1
+        //21+24+40+138+101=320
+        // 3 8 20 46 101
+        //
         FiveFourService service = new FiveFourService();
         long total = 0;
         for (int i = 0; i < 5; i++) {

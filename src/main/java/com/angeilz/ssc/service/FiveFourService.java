@@ -101,10 +101,10 @@ public class FiveFourService {
     }
 
     //算法4
-    public double profitAndLoss(String begin, String end) {
+    public double profitAndLoss(String begin, String end,String tableName) {
         int oneTime = 0, twoTime = 0, threeTime = 0, fourTime = 0,
                 fiveTime = 0, loseTime = 0;
-        List<StageInfo> list = cqDao.findListByTime(begin, end);
+        List<StageInfo> list = cqDao.findListByTime(begin, end,tableName);
         double profitAndLoss = 0;
         List<Double> profitAndLossList = new ArrayList<>();
         List<String> loseIdList = new ArrayList<>();
